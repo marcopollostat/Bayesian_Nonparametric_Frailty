@@ -205,3 +205,5 @@ gewZ <- geweke.diag(Zts)
 plot(gewZ$z, main = "Geweke Diagnostic",ylab="Z-Statistic",xlab="Cars")
 abline( 1.96,0,lty=2)
 abline(-1.96,0,lty=2)
+
+
