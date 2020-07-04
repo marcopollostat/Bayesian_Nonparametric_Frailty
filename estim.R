@@ -169,17 +169,27 @@ p = ggplot(df, aes(x=numfailj, y=estmfraj )) +
         ylab("Estimated value of Z_j")
 ggMarginal(p, type="histogram")
 
-##############################
 
 
+#######################################
+
+beta1=0.3039681
+beta2=0.4137968
+beta3=0.7045688
+
+n1=76
+n2=87
+n3=111
 
 beta_1hat = ((n1-1)/(n1))*beta1
 beta_2hat = ((n2-1)/(n2))*beta2
 beta_3hat = ((n3-1)/(n3))*beta3
 
+
 desvp_b1 = sqrt( ( (n1-1)/(n1^2) )*(beta1^2) )
 desvp_b2 = sqrt( ( (n2-1)/(n2^2) )*(beta2^2) )
 desvp_b3 = sqrt( ( (n3-1)/(n3^2) )*(beta3^2) )
+
 
 IC_b1 = qgamma(c(0.025,0.975),n1-1,n1/beta1)
 IC_b2 = qgamma(c(0.025,0.975),n2-1,n2/beta2)
@@ -190,23 +200,30 @@ alfa_1hat = n1/m
 alfa_2hat = n2/m
 alfa_3hat = n3/m
 
+
 desvp_a1 = sqrt((n1)/(m^2))
 desvp_a2 = sqrt((n2)/(m^2))
 desvp_a3 = sqrt((n3)/(m^2))
+
 
 IC_a1 = qgamma(c(0.025,0.975),n1,m)
 IC_a2 = qgamma(c(0.025,0.975),n2,m)
 IC_a3 = qgamma(c(0.025,0.975),n3,m)
 
+
 round(c(beta_1hat,beta_2hat,beta_3hat),3)
+
 
 round(c(IC_b1,IC_b2,IC_b3),3)
 
+
 round(c(alfa_1hat,alfa_2hat,alfa_3hat),3)
+
 
 round(c(IC_a1,IC_a2,IC_a3),3)
 
+
 round(c(desvp_b1,desvp_b2,desvp_b3),3)
 
-round(c(desvp_a1,desvp_a2,desvp_a3),3)
 
+round(c(desvp_a1,desvp_a2,desvp_a3),3)
