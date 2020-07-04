@@ -1,1 +1,1 @@
-# stand.alone.R
+# stand.alone
