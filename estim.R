@@ -82,19 +82,34 @@ round( variazs[169], 3 )
 round( quantile( Z[169,], prob = c(0.025,0.975) ), 3 )
 
 
+##########################
+#CODA diagnostic
+##########################
+require(coda)
+Zts  <- as.mcmc(t(Z))      
+effZ <- effectiveSize(Zts) 
+gewZ <- geweke.diag(Zts)   
+
+
+plot(gewZ$z, main = "Geweke Diagnostic",ylab="Z-Statistic",xlab="Cars")
+abline( 1.96,0,lty=2)
+abline(-1.96,0,lty=2)
+
+
+###############################
+
 varZ <- apply( Z, 2, var )
 mean(varZ)
 ICz <- round( quantile( varZ, prob = c(0.025,0.975) ), 3 )
 ICz
 
-
+varzs <- apply( Z, 1, var )
 hist(varzs, breaks = 100, main = NULL, col = "gray")
 p <- c(varzs[5],varzs[17],varzs[26],varzs[57],varzs[98],varzs[126],varzs[129],varzs[161],varzs[165],varzs[169])
 points(p, y=rep(0,10), pch=4, col = 2)
 
-boxplot(varzs, horizontal=TRUE,  outline=TRUE,  ylim=c(0,20), frame=F, col = "green1", add = TRUE)
 
-
+###############################
 Cpar <- as.numeric(aj1[[1,3]]) 
 str(Cpar) 
 summary(Cpar) 
@@ -112,7 +127,7 @@ hist(Cpar, freq = F, breaks = 100, xlab="C",ylab="Density", main = NULL, xlim = 
 abline(v = mean(Cpar), col=2, lty=2, lwd=2)
 
 ###########
-# plots
+# joint plots
 ###########
 
 #pdf('grafCpar.pdf')
@@ -136,7 +151,7 @@ points(p, y=rep(0,10), pch=4, col = 2)
 
 #dev.off()
 
-
+###############################
 
 DATA<-as.vector(unlist(estlass[4]))
 estmfraj <-mediazs[1:172]
@@ -147,17 +162,16 @@ library(ggplot2)
 library(ggExtra)
 
 
-p=ggplot(df, aes(x=numfailj, y=estmfraj )) +
+p = ggplot(df, aes(x=numfailj, y=estmfraj )) +
         geom_point(aes(colour = "blue"), )  +
         theme(legend.position="none") +
         xlab("Cumulative number of failures by car") +
-        ylab("Estimated value of Z_j") 
-
+        ylab("Estimated value of Z_j")
 ggMarginal(p, type="histogram")
 
+##############################
 
-##############################
-##############################
+
 
 beta_1hat = ((n1-1)/(n1))*beta1
 beta_2hat = ((n2-1)/(n2))*beta2
@@ -196,16 +210,3 @@ round(c(desvp_b1,desvp_b2,desvp_b3),3)
 
 round(c(desvp_a1,desvp_a2,desvp_a3),3)
 
-
-##########################
-#CODA diagnostic
-##########################
-require(coda)
-Zts  <- as.mcmc(t(Z))      
-effZ <- effectiveSize(Zts) 
-gewZ <- geweke.diag(Zts)   
-   
-
-plot(gewZ$z, main = "Geweke Diagnostic",ylab="Z-Statistic",xlab="Cars")
-abline( 1.96,0,lty=2)
-abline(-1.96,0,lty=2)
