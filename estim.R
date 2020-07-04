@@ -1,5 +1,9 @@
 
-rm(list = ls()) 
+rm(list = ls())
+
+library(Rcpp)
+library(RcppArmadillo)
+
 Rcpp::sourceCpp('NPB25.cpp') 
 X          <- read.csv("cd_cars.csv") 
 X          <- as.matrix(X) 
