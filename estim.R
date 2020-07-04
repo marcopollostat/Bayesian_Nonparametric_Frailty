@@ -1,7 +1,7 @@
 
 rm(list = ls()) 
 Rcpp::sourceCpp('NPB25.cpp') 
-X          <- read.csv("cd carros.csv") 
+X          <- read.csv("cd_cars.csv") 
 X          <- as.matrix(X) 
 T          <- 3000         
 r          <- 267          
