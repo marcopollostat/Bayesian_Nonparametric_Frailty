@@ -1,4 +1,5 @@
-#rm(list = ls())
+
+rm(list = ls())
 
 library(Rcpp)
 library(RcppArmadillo)
