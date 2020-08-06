@@ -36,7 +36,7 @@ epsilon <- 0.05
 set.seed(123)
 aj1     <- GHMCRSMNB( X, T = 3000, r =267 , warmup = 5000, iter = 5000, epsilon, LF = 20, parhiperc , parnormal)
 
-aj1[[ 1,2]]
+aj1[[1,2]]
 
 Z  <- as.matrix(aj1[1,1][[1]]) 
 
@@ -163,7 +163,7 @@ library(ggExtra)
 
 
 p = ggplot(df, aes(x=numfailj, y=estmfraj )) +
-        geom_point(aes(colour = "blue"), )  +
+        geom_point(aes(colour = "blue"), position = "jitter" )  +
         theme(legend.position="none") +
         xlab("Cumulative number of failures by car") +
         ylab("Estimated value of Z_j")
