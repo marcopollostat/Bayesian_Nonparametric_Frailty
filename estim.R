@@ -3,6 +3,7 @@ rm(list = ls())
 
 library(Rcpp)
 library(RcppArmadillo)
+library(ggplot2)
 
 Rcpp::sourceCpp('NPB25.cpp') 
 X          <- read.csv("cd_cars.csv") 
